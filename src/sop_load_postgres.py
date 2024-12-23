@@ -19,23 +19,23 @@ try:
     file_path = "C:\\Users\\sujay\\Downloads\\fraudTest.csv\\fraudTest.csv"
 
     # Read CSV with parsing dates
-    result = pd.read_csv(file_path, parse_dates=['transaction_date'])
+    result = pd.read_csv(file_path, parse_dates=['trans_date_trans_time'])
     print("CSV file loaded successfully.")
 
     # Ensure the data is sorted by date
-    result = result.sort_values(by='transaction_date')
+    result = result.sort_values(by='trans_date_trans_time')
     print("Data sorted by transaction date.")
 
     # Calculate the maximum date within the first 100 days
-    start_date = result['transaction_date'].min()
+    start_date = result['trans_date_trans_time'].min()
     end_date = start_date + pd.Timedelta(days=100)
 
     # Filter the data for the first 100 days
-    filtered_data = result[(result['transaction_date'] >= start_date) & (result['transaction_date'] < end_date)]
+    filtered_data = result[(result['trans_date_trans_time'] >= start_date) & (result['trans_date_trans_time'] < end_date)]
     print(f"Filtered data for the first 100 days: {len(filtered_data)} rows.")
 
     # Write the filtered data to the database
-    filtered_data.to_sql('sujay_sales', con=engine, if_exists="replace", index=False)
+    filtered_data.to_sql('sop_credit_transaction', con=engine, if_exists="replace", index=False)
     print("Filtered data written to the database successfully.")
 
 except FileNotFoundError as fnf_error:
