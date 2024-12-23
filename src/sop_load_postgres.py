@@ -11,8 +11,9 @@ ENCODED_PASSWORD = quote_plus(PASSWORD)
 
 try:
     # Create database connection
-    database_url = f"postgresql://{USERNAME}:{ENCODED_PASSWORD}@{PUBLIC_IP}:{PORT}/{DB_NAME}"
-    engine = create_engine(database_url, echo=False)
+    # database_url = f"postgresql://{USERNAME}:{ENCODED_PASSWORD}@{PUBLIC_IP}:{PORT}/{DB_NAME}"
+    # engine = create_engine(database_url, echo=False)
+    engine = create_engine('postgresql://consultants:WelcomeItc%402022@18.132.73.146:5432/testdb')
     print("Database connection established.")
 
     # File path for CSV
