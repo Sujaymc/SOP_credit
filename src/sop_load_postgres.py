@@ -33,15 +33,15 @@ try:
 
     # Filter the data for the first 100 days
     filtered_data = result[(result['trans_date_trans_time'] >= start_date) & (result['trans_date_trans_time'] < end_date)]
-    print(f"Filtered data for the first 100 days: {len(filtered_data)} rows.")
+     print("Filtered data for the first 100 days: {} rows.".format(len(filtered_data)))
 
     # Write the filtered data to the database
     filtered_data.to_sql('sop_credit_transaction', con=engine, if_exists="replace", index=False)
     print("Filtered data written to the database successfully.")
 
 except FileNotFoundError as fnf_error:
-    print(f"File not found: {fnf_error}")
+    print("File not found: {}".format(fnf_error))
 except pd.errors.ParserError as parser_error:
-    print(f"Error parsing CSV file: {parser_error}")
+    print("Error parsing CSV file: {}".format(parser_error))
 except Exception as e:
-    print(f"An error occurred: {e}")
+    print("An error occurred: {}".format(e))
