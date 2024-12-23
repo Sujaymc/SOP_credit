@@ -22,7 +22,7 @@ try:
 
    # Check if file exists
     if not os.path.exists(file_path):
-        raise FileNotFoundError(f"The file at path {file_path} does not exist.")
+       raise FileNotFoundError("The file at path {} does not exist.".format(file_path))
 
     # Read CSV with parsing dates
     result = pd.read_csv(file_path, parse_dates=['trans_date_trans_time'])
