@@ -12,7 +12,7 @@ try:
     print("Database connection established.")
 
     # File path for CSV
-    file_path = "C:\\Users\\sujay\\Downloads\\fraudTest.csv\\fraudTest.csv"
+    file_path = "D:\\fraudTest.csv"
 
    # Check if file exists
     if not os.path.exists(file_path):
