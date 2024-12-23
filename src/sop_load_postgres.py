@@ -1,6 +1,7 @@
-from urllib.parse import quote_plus
+from requests.utils import quote 
 from sqlalchemy import create_engine, text
 import pandas as pd
+import os
 
 PUBLIC_IP = "18.132.73.146"
 USERNAME = "consultants"
@@ -19,6 +20,10 @@ try:
     # File path for CSV
     file_path = "C:\\Users\\sujay\\Downloads\\fraudTest.csv\\fraudTest.csv"
 
+   # Check if file exists
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"The file at path {file_path} does not exist.")
+
     # Read CSV with parsing dates
     result = pd.read_csv(file_path, parse_dates=['trans_date_trans_time'])
     print("CSV file loaded successfully.")
@@ -36,7 +41,7 @@ try:
     print("Filtered data for the first 100 days: {} rows.".format(len(filtered_data)))
 
     # Write the filtered data to the database
-    filtered_data.to_sql('sop_credit_transaction', con=engine, if_exists="replace", index=False)
+    filtered_data.to_sql('sop_credit_transaction', con=engine, if_exists="replace", index=False, chunksize=1000)
     print("Filtered data written to the database successfully.")
 
 except FileNotFoundError as fnf_error:
