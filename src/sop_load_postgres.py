@@ -1,14 +1,8 @@
-from requests.utils import quote 
+
 from sqlalchemy import create_engine, text
 import pandas as pd
 import os
 
-PUBLIC_IP = "18.132.73.146"
-USERNAME = "consultants"
-PASSWORD = "WelcomeItc@2022"
-DB_NAME = "testdb"
-PORT = "5432"
-ENCODED_PASSWORD = quote_plus(PASSWORD)
 
 try:
     # Create database connection
