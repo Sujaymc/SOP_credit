@@ -33,7 +33,7 @@ try:
 
     # Filter the data for the first 100 days
     filtered_data = result[(result['trans_date_trans_time'] >= start_date) & (result['trans_date_trans_time'] < end_date)]
-     print("Filtered data for the first 100 days: {} rows.".format(len(filtered_data)))
+    print("Filtered data for the first 100 days: {} rows.".format(len(filtered_data)))
 
     # Write the filtered data to the database
     filtered_data.to_sql('sop_credit_transaction', con=engine, if_exists="replace", index=False)
