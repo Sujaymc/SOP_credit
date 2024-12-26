@@ -1,6 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, max as spark_max, lit
 import os
+import pandas as pd
 
 try:
     # Initialize Spark session
@@ -43,8 +44,7 @@ try:
     print("Next batch data rows (60 days): {} rows.".format(next_batch_data.count()))
 
     # Write the next batch data to the database
-    next_batch_data.write \
-        .jdbc(url=database_url, table="sop_credit_transaction", mode="append", properties=db_properties)
+    next_batch_data.write.jdbc(url=database_url, table="sop_credit_transaction", mode="append", properties=db_properties)
     print("Next batch data written to the database successfully.")
 
 except FileNotFoundError as fnf_error:
