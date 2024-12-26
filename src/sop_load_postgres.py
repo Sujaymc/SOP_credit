@@ -13,7 +13,7 @@ try:
 
     # Check if file exists
     if not os.path.exists(file_path):
-        raise FileNotFoundError(f"The file at path {file_path} does not exist.")
+        raise FileNotFoundError("The file at path {} does not exist.".format(file_path))
 
     # Read CSV with parsing dates
     df = spark.read.csv(file_path, header=True, inferSchema=True, timestampFormat="yyyy-MM-dd HH:mm:ss")
@@ -30,7 +30,7 @@ try:
     # Filter the data for the first 100 days
     filtered_data = df.filter((col('trans_date_trans_time') >= lit(start_date)) & 
                               (col('trans_date_trans_time') < lit(end_date)))
-    print(f"Filtered data for the first 100 days: {filtered_data.count()} rows.")
+    print("Filtered data for the first 100 days: {} rows.".format(filtered_data.count()))
 
     # Define database connection properties
     database_url = "jdbc:postgresql://18.132.73.146:5432/testdb"
@@ -45,6 +45,6 @@ try:
     print("Filtered data written to the database successfully.")
 
 except FileNotFoundError as fnf_error:
-    print(f"File not found: {fnf_error}")
+    print("File not found: {}".format(fnf_error))
 except Exception as e:
-    print(f"An error occurred: {e}")
+    print("An error occurred: {}".format(e))
