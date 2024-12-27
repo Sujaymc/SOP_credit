@@ -48,3 +48,6 @@ except FileNotFoundError as fnf_error:
     print("File not found: {}".format(fnf_error))
 except Exception as e:
     print("An error occurred: {}".format(e))
+
+
+#spark-submit --master local[*] --jars /var/lib/jenkins/workspace/nagaranipysparkdryrun/lib/postgresql-42.5.3.jar sop_loadToHive.py
