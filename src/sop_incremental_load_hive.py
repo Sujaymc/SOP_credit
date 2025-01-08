@@ -33,8 +33,8 @@ try:
         new_data = new_data.withColumnRenamed("first", "first_name").withColumnRenamed("last", "last_name").withColumnRenamed("city_pop", "population")
 
         # Transformation 4: Add 'Age' column
-        new_data = new_data.withColumn("birth_date", col("birth_date").cast(DataType()))  # Ensure it's a date type
-        new_data = new_data.withColumn("Age", datediff(current_date(), col("birth_date")) / 365)  # Approximate age
+        new_data = new_data.withColumn("dob", col("dob").cast(DataType()))  # Ensure it's a date type
+        new_data = new_data.withColumn("Age", datediff(current_date(), col("dob")) / 365)  # Approximate age
 
         # Extract the date and create a new column
         new_data = new_data.withColumn("Date", to_date(col("trans_date_trans_time")))
